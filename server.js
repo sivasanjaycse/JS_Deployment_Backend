@@ -6,14 +6,16 @@ const taskRoutes = require("./routes/taskRoutes");
 const connectDB = require("./config/db");
 
 const app = express();
+
+// middleware
 app.use(cors());
 app.use(express.json());
 
+// routes
 app.use("/", taskRoutes);
 
+// connect DB (safe for serverless)
 connectDB();
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+
+module.exports = app;
